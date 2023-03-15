@@ -120,3 +120,45 @@ group by
 /*
 For each doctor, display their id, full name, and the first and last admission date they attended.
 */
+
+select 
+	d.doctor_id,
+    concat(d.first_name,' ', d.last_name) as full_name,
+    min(a.admission_date) as first_admission_date,
+    max(a.admission_date) as last_admission_date
+from doctors d
+left join admissions a on a.attending_doctor_id = d.doctor_id
+group by doctor_id
+
+/*
+Display the total amount of patients for each province. Order by descending. filter only total amount greater than 0
+*/
+
+select 
+	pn.province_name,
+    count(p.patient_id)
+from 
+	province_names pn
+left join 
+	patients p on p.province_id = pn.province_id
+group by 
+	pn.province_name
+having 
+	count(p.patient_id) > 0
+order by 
+	count(p.patient_id) desc
+/*
+display the number of duplicate patients based on their first_name and last_name.
+*/
+
+select
+	first_name,
+    last_name,
+    count(*) num_of_duplicates
+from 
+	patients
+group by 
+	first_name, 
+    last_name
+having 
+	count(*) > 1;
