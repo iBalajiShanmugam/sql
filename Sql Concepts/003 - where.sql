@@ -71,3 +71,19 @@ from
 	patients 
 where 
 	city in('Milton', 'Toronto') and allergies ='Penicillin';
+
+
+-- get the admissions details who are all diagonosis with pain
+SELECT 
+	* 
+FROM 
+	admissions
+WHERE 
+	diagnosis LIKE '%Pain';
+
+
+select * from admissions
+where diagnosis like '%Pain%';
+
+select * from patients
+where first_name like 'a__'
