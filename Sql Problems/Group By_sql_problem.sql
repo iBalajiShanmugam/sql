@@ -162,3 +162,29 @@ group by
     last_name
 having 
 	count(*) > 1;
+
+/*
+
+Show all of the patients grouped into weight groups.
+Show the total amount of patients in each weight group.
+Order the list by the weight group decending.
+
+For example, if they weight 100 to 109 they are placed in the 100 weight group, 110-119 = 110 weight group, etc.
+*/
+
+
+
+/*
+Each admission costs $50 for patients without insurance, and $10 for patients with insurance. All patients with an even patient_id have insurance.
+
+Give each patient a 'Yes' if they have insurance, and a 'No' if they don't have insurance. Add up the admission_total cost for each has_insurance group.
+*/
+
+
+/*
+Show the provinces that has more patients identified as 'M' than 'F'. Must only show full province_name
+*/
+
+/*
+For each day display the total amount of admissions on that day. Display the amount changed from the previous date.
+*/
