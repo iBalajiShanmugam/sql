@@ -1,1 +1,2 @@
-# sql
+## SQL Problems and Solutions
+This repository contains a collection of SQL problems and solutions to help you improve your SQL skills. Each problem includes a description of the problem and a solution that demonstrates how to write SQL code to solve the problem. The SQL code is written using MySQL syntax, but the concepts can be applied to other SQL variants.
