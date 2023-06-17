@@ -3,19 +3,23 @@
 /*
 
 # operators
+/
+%
+*
+-
+
 < 
 > 
 >=
 <=
-/
-%
 =
 <>
-IN
 AND
 OR
-BETWEEN
+IN
+NOT IN
 
+BETWEEN
 */
 
 
