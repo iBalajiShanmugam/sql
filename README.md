@@ -1,98 +1,56 @@
-## SQL Problems and Solutions
-This repository contains a collection of SQL problems and solutions to help you improve your SQL skills. Each problem includes a description of the problem and a solution that demonstrates how to write SQL code to solve the problem. The SQL code is written using MySQL syntax, but the concepts can be applied to other SQL variants.
+# SQL Notes for Data Analytics
 
-## 1. SELECT: 
+This repository contains my notes on SQL for data analytics purposes. These notes serve as a quick reference guide and cover essential concepts and statements used in SQL for data analysis tasks.
 
-The SELECT statement is used to retrieve data from one or more tables. It specifies which columns to retrieve, and can also include aggregate functions like COUNT, SUM, or AVG to calculate summary information about the data. 
+## Table of Contents
 
-Syntax: 
+1. [Introduction to SQL for Data Analytics](#introduction-to-sql-for-data-analytics)
+2. [Big 6 Statements](#big-6-statements)
+3. [Operators in SQL](#operators-in-sql)
+4. [Order of Execution in SQL](#order-of-execution-in-sql)
 
-```
-SELECT column1, column2, ... FROM table_name
-```
+## Introduction to SQL for Data Analytics
 
-Example: 
+SQL (Structured Query Language) is a powerful language used for querying and manipulating relational databases. In the context of data analytics, SQL plays a crucial role in extracting insights from data. This section provides an overview of SQL's applications in data analysis tasks, covering the basics of SQL syntax, common use cases, and the importance of SQL in data analytics.
 
-```
-SELECT name, age, email FROM customers
-```
+## Big 6 Statements
 
-## 2. FROM: 
+The "Big 6" statements in SQL form the foundation for data retrieval, filtering, aggregation, and sorting. Understanding these statements is essential for effective data analysis. The Big 6 statements are:
 
-The FROM statement specifies which table(s) to retrieve data from. It can also include JOIN clauses to combine data from multiple tables.
+- SELECT: Retrieves specific columns or expressions from one or more tables.
+- FROM: Specifies the table or tables from which data is retrieved.
+- WHERE: Filters data based on specified conditions.
+- GROUP BY: Groups rows based on one or more columns for aggregate calculations.
+- HAVING: Filters grouped data based on specified conditions.
+- ORDER BY: Sorts the result set based on one or more columns.
 
-Syntax: 
+## Operators in SQL
 
-```
-SELECT column1, column2, ... FROM table1 JOIN table2 ON table1.column = table2.column
-```
+SQL provides various operators for performing operations on data. These operators allow you to manipulate, compare, and combine values in your queries. Some commonly used operators in SQL include:
 
-Example: 
+- Arithmetic operators: +, -, *, /
+- Comparison operators: =, <, >, <=, >=, <>
+- Logical operators: AND, OR, NOT
+- String operators: CONCAT, LIKE
+- NULL-related operators: IS NULL, IS NOT NULL
+- Set operators: UNION, INTERSECT, EXCEPT
 
-```
-SELECT orders.order_id, customers.name FROM orders JOIN customers ON orders.customer_id = customers.customer_id
-```
+## Order of Execution in SQL
 
-## 3. WHERE:
+When executing a SQL query, the order of execution follows a specific sequence. Understanding this order helps in designing and optimizing queries. The typical order of execution in SQL is as follows:
 
-The WHERE statement is used to filter rows based on a specific condition. It can include logical operators like AND, OR, and NOT, and comparison operators like =, <, >, and <>.
+1. FROM: Specifies the tables involved in the query.
+2. WHERE: Filters the rows based on specified conditions.
+3. GROUP BY: Groups the rows according to the specified columns.
+4. HAVING: Filters the grouped data based on specified conditions.
+5. SELECT: Retrieves the specified columns or expressions.
+6. ORDER BY: Sorts the result set based on specified columns.
 
-Syntax: 
+Please note that this is a general sequence, and the database optimizer may optimize the execution order in some cases.
 
-```
-SELECT column1, column2, ... FROM table_name WHERE condition
-```
+---
 
-Example: 
+Feel free to explore the different sections of these SQL notes and expand your understanding of SQL for data analytics.
 
-```
-SELECT name, age FROM customers WHERE age > 30 AND email LIKE '%@gmail.com'
-```
+Happy learning and analyzing!
 
-## 4. GROUP BY: 
-
-The GROUP BY statement is used to group rows based on a specific column(s). It is often used with aggregate functions to calculate summary information about each group.
-
-Syntax: 
-
-```
-SELECT column1, aggregate_function(column2) FROM table_name GROUP BY column1
-```
-
-Example: 
-
-```
-SELECT category, COUNT(*) as num_products FROM products GROUP BY category
-```
-
-## 5. HAVING: 
-
-The HAVING statement is used to filter groups based on a specific condition. It is similar to the WHERE statement, but operates on groups rather than individual rows.
-
-Syntax: 
-
-```
-SELECT column1, aggregate_function(column2) FROM table_name GROUP BY column1 HAVING condition
-```
-
-Example: 
-
-```
-SELECT category, AVG(price) as avg_price FROM products GROUP BY category HAVING AVG(price) > 100
-```
-
-## 6. ORDER BY: 
-
-The ORDER BY statement is used to sort the result set by one or more columns. It can specify ASC (ascending) or DESC (descending) order, and can include multiple columns to sort by.
-
-Syntax: 
-
-```
-SELECT column1, column2, ... FROM table_name ORDER BY column1 ASC/DESC, column2 ASC/DESC, ...
-```
-
-Example: 
-
-```
-SELECT name, age FROM customers ORDER BY age DESC
-```
