@@ -872,6 +872,9 @@ TRUNCATE removes all rows from a table quickly. It's faster than DELETE for remo
 ```sql
 TRUNCATE TABLE table_name;
 ```
+```sql
+TRUNCATE TABLE enrollments RESTART IDENTITY;
+```
 
 ### Truncating Multiple Tables
 
