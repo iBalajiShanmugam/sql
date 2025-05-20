@@ -3218,3 +3218,167 @@ $$;
 ```
 
 These comprehensive examples demonstrate how views, CTEs, and stored procedures work together to provide powerful database management capabilities in PostgreSQL.
+
+## 📚 SQL Window Functions: A Comprehensive Guide
+
+SQL Window Functions are powerful tools that perform calculations across a set of table rows related to the current row. Unlike aggregate functions, which return a single result for a group of rows, window functions return a value for each row while retaining the individual row identities.
+
+### 🔍 Key Concepts
+
+* **OVER() Clause**: Defines the window (set of rows) the function operates on.
+* **PARTITION BY**: Divides the result set into partitions to which the window function is applied.
+* **ORDER BY**: Determines the order of rows within each partition.
+* **Frame Specification**: Specifies the subset of rows within the partition for the function to operate on.
+
+---
+
+### 🧼 Aggregate Window Functions
+
+These functions perform calculations across a set of rows related to the current row.
+
+#### 1. `SUM()`, `AVG()`, `COUNT()`, `MIN()`, `MAX()`
+
+These functions compute the sum, average, count, minimum, and maximum values, respectively, over a specified window.
+
+**Example: Calculating Average Salary by Department**
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  AVG(Salary) OVER (PARTITION BY Department) AS Avg_Department_Salary
+FROM employee;
+```
+
+This query calculates the average salary within each department and displays it alongside each employee's details.
+
+---
+
+### 🏆 Ranking Window Functions
+
+These functions assign a rank or number to each row within a partition.
+
+#### 2. `ROW_NUMBER()`
+
+Assigns a unique sequential number to rows within a partition, starting at 1.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  ROW_NUMBER() OVER (PARTITION BY Department ORDER BY Salary DESC) AS RowNum
+FROM employee;
+```
+
+#### 3. `RANK()`
+
+Assigns a rank to each row within a partition, with gaps in ranking for ties.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  RANK() OVER (PARTITION BY Department ORDER BY Salary DESC) AS SalaryRank
+FROM employee;
+```
+
+#### 4. `DENSE_RANK()`
+
+Similar to `RANK()`, but does not skip ranks after ties.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  DENSE_RANK() OVER (PARTITION BY Department ORDER BY Salary DESC) AS DenseSalaryRank
+FROM employee;
+```
+
+#### 5. `NTILE(n)`
+
+Divides the result set into `n` approximately equal parts and assigns a bucket number to each row.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  NTILE(4) OVER (ORDER BY Salary DESC) AS Quartile
+FROM employee;
+```
+
+---
+
+### 🔀 Value Window Functions
+
+These functions return values from other rows in the result set relative to the current row.
+
+#### 6. `LAG()`
+
+Accesses data from a previous row in the same result set.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  LAG(Salary, 1) OVER (PARTITION BY Department ORDER BY Salary) AS PrevSalary
+FROM employee;
+```
+
+#### 7. `LEAD()`
+
+Accesses data from a subsequent row in the same result set.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  LEAD(Salary, 1) OVER (PARTITION BY Department ORDER BY Salary) AS NextSalary
+FROM employee;
+```
+
+#### 8. `FIRST_VALUE()`
+
+Returns the first value in an ordered set of values.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  FIRST_VALUE(Salary) OVER (PARTITION BY Department ORDER BY Salary) AS FirstSalary
+FROM employee;
+```
+
+#### 9. `LAST_VALUE()`
+
+Returns the last value in an ordered set of values.
+
+```sql
+SELECT
+  Name,
+  Department,
+  Salary,
+  LAST_VALUE(Salary) OVER (
+    PARTITION BY Department
+    ORDER BY Salary
+    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
+  ) AS LastSalary
+FROM employee;
+```
+
+---
+
+### 📌 Additional Notes
+
+* **Frame Specification**: By default, window functions operate on a frame of rows defined by the `ORDER BY` clause. You can customize this frame using clauses like `ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW`.
+
+* **Performance Considerations**: Window functions can be resource-intensive on large datasets. Ensure appropriate indexing and query optimization techniques are applied.
+
+---
